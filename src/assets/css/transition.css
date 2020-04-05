@@ -1,0 +1,117 @@
+
+.prize-icon-item-ani {
+  animation: prize-icon-item-ani 4s ease-out infinite;
+}
+
+@keyframes prize-icon-item-ani {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(0.1rem); }
+  75% { transform: translateY(-0.1rem); }
+  100% { transform: translateY(0); }
+}
+
+/***
+ *  遮罩层过渡动画
+ */
+.fade-enter-active {
+  transition: all .4s ease;
+}
+.fade-leave-active {
+  transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.fade-enter, .fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  opacity: 0;
+}
+
+/***
+ *  骰子出现过渡动画
+ */
+.zoom-enter-active {
+  transition: all .4s ease;
+}
+.zoom-leave-active {
+  transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.zoom-enter, .zoom-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: scale(0);
+  opacity: 0;
+}
+
+
+/***
+ *  摇骰子动画
+ */
+.dice-ani-loop {
+  animation: dice-ani-loop 600ms linear 2;
+}
+
+@keyframes dice-ani-loop {
+  0% { background-position-y: -13.07rem; }
+  33.333% { background-position-y: -13.07rem; }
+  33.334% { background-position-y: -15.23rem; }
+  66.666% { background-position-y: -15.23rem; }
+  66.667% { background-position-y: -17.40rem; }
+  100% { background-position-y: -17.40rem; }
+}
+
+/***
+ *  封面动画
+ */
+.cover-ani {
+  animation: cover-ani 1s ease-in forwards;
+}
+
+@keyframes cover-ani {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+/***
+ *  左云层动画
+ */
+.left-cloud-ani {
+  animation: left-cloud-ani 4s ease-in forwards;
+}
+
+@keyframes left-cloud-ani {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-0.2rem); }
+  100% { transform: translateX(0); }
+}
+
+.right-cloud-ani {
+  animation: right-cloud-ani 4s ease-in forwards;
+}
+
+@keyframes right-cloud-ani {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(0.2rem); }
+  100% { transform: translateX(0); }
+}
+
+/***
+ *  开启按钮动画
+ */
+.open-cover-btn-ani {
+  animation: open-cover-btn-ani 2s linear infinite;
+}
+
+@keyframes open-cover-btn-ani {
+  0% { transform: translateY(0rem) }
+  25% { transform: translateY(-0.1rem) }
+  75% { transform: translateY(0.1rem) }
+  100% { transform: translateY(0rem) }
+}
+
+.cloud-ani {
+  animation: cloud-ani 2s linear infinite;
+}
+
+@keyframes cloud-ani {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
