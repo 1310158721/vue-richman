@@ -131,3 +131,12 @@
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
 }
+
+.fadeOut {
+  animation: fadeOut 2s 1s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

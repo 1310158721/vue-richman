@@ -33,6 +33,7 @@
     <CountZeroAlert :isShowCountZeroAlert='isShowCountZeroAlert' @closeCountZeroAlert='closeCountZeroAlert' />
     <ActivityCover />
     <ActivityPreload v-if='isLoadedInit' />
+    <ActivityLoading :isLoadedInit='isLoadedInit' />
   </div>
 </template>
 <script>
@@ -46,6 +47,7 @@ import ActivityPreventMask from '@/components/activityPreventMask'
 import ActivityRule from '@/components/activityRule'
 import ActivityCover from '@/components/activityCover'
 import ActivityPreload from '@/components/activityPreload'
+import ActivityLoading from '@/components/activityLoading'
 import { getInitScrollTop, scrollTo, throttle } from '@/assets/js/utils'
 import { nothingPosId } from '@/assets/js/contants'
 import CountZeroAlert from '@/components/countZeroAlert'
@@ -61,7 +63,8 @@ export default {
     ActivityRule,
     CountZeroAlert,
     ActivityCover,
-    ActivityPreload
+    ActivityPreload,
+    ActivityLoading
   },
   props: {},
   data () {
