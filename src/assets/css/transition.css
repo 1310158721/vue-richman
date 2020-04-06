@@ -72,7 +72,7 @@
  *  左云层动画
  */
 .left-cloud-ani {
-  animation: left-cloud-ani 4s ease-in forwards;
+  animation: left-cloud-ani 2s 400ms ease-in-out infinite;
 }
 
 @keyframes left-cloud-ani {
@@ -82,7 +82,7 @@
 }
 
 .right-cloud-ani {
-  animation: right-cloud-ani 4s ease-in forwards;
+  animation: right-cloud-ani 2s ease-in-out infinite;
 }
 
 @keyframes right-cloud-ani {
@@ -114,4 +114,20 @@
   25% { transform: rotate(1deg); }
   75% { transform: rotate(-1deg); }
   100% { transform: rotate(0deg); }
+}
+
+/***
+ *  小车移动 l-r
+ */
+.wheel_rotate_l_r_ani {
+  animation: wheel_rotate_l_r_ani 500ms linear infinite;
+}
+
+.wheel_rotate_r_l_ani {
+  animation: wheel_rotate_l_r_ani 500ms linear reverse infinite;
+}
+
+@keyframes wheel_rotate_l_r_ani {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
 }

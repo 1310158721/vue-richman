@@ -1,6 +1,6 @@
 <template>
   <transition name='zoom'>
-    <div v-if='isShowRule' class="activity-rule-wrapper">
+    <div v-if='isShowRule' class="activity-rule-wrapper" @touchmove.prevent=''>
       <span class="close" @click='throttleCloseRule'></span>
       <span class="return" @click='throttleCloseRule'></span>
     </div>

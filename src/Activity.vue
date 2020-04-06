@@ -2,7 +2,10 @@
   <div ref='activity' class="activity-wrapper">
     <span
       class="go-rule-btn"
+      :style='goRulesBtnStyle'
       @click='throttleGoRulesBNtnClick'
+      @touchstart='scale = 0.9'
+      @touchend='scale = 1'
     />
     <span class="draw-count-wrapper">
       还剩 <span class="count">{{ count }}</span> 次
@@ -21,7 +24,7 @@
       @backTwoStepCallback='backTwoStepCallback'
       @scrollBodyCallback='scrollBodyCallback'
     />
-    <StartBtn :count='count' @startBtnCallback='startBtnCallback' @drawCountZeroCallback='drawCountZeroCallback' />
+    <StartBtn :count='count' @startBtnBeforeRequestCallback='startBtnBeforeRequestCallback' @startBtnCallback='startBtnCallback' @drawCountZeroCallback='drawCountZeroCallback' />
     <ActivityMask :isShowActivityMask='isShowActivityMask' />
     <ActivityDice :isShowDice='isShowDice' :random='random' @diceAniEndCallback='diceAniEndCallback' />
     <ActivityAlert v-if='isLoadedInit' :isShowActivityAlert='isShowActivityAlert' :targetId='targetId' @closeAlertCallback='closeAlertCallback' />
@@ -29,6 +32,7 @@
     <ActivityRule :isShowRule='isShowRule' @closeActivityRuleCallback='closeActivityRuleCallback' />
     <CountZeroAlert :isShowCountZeroAlert='isShowCountZeroAlert' @closeCountZeroAlert='closeCountZeroAlert' />
     <ActivityCover />
+    <ActivityPreload v-if='isLoadedInit' />
   </div>
 </template>
 <script>
@@ -41,6 +45,7 @@ import ActivityAlert from '@/components/activityAlert'
 import ActivityPreventMask from '@/components/activityPreventMask'
 import ActivityRule from '@/components/activityRule'
 import ActivityCover from '@/components/activityCover'
+import ActivityPreload from '@/components/activityPreload'
 import { getInitScrollTop, scrollTo, throttle } from '@/assets/js/utils'
 import { nothingPosId } from '@/assets/js/contants'
 import CountZeroAlert from '@/components/countZeroAlert'
@@ -55,7 +60,8 @@ export default {
     ActivityPreventMask,
     ActivityRule,
     CountZeroAlert,
-    ActivityCover
+    ActivityCover,
+    ActivityPreload
   },
   props: {},
   data () {
@@ -75,12 +81,18 @@ export default {
       isShowActivityAlert: false,
       isShowPreventMask: false,
       isShowRule: false,
-      isShowCountZeroAlert: false
+      isShowCountZeroAlert: false,
+      scale: 1
     }
   },
   computed: {
     throttleGoRulesBNtnClick () {
-      return throttle(this.goRulesBNtnClick, 500)
+      return throttle(this.goRulesBNtnClick, 200)
+    },
+    goRulesBtnStyle () {
+      return {
+        transform: `scale(${this.scale})`
+      }
     }
   },
   methods: {
@@ -109,6 +121,7 @@ export default {
         targetScrollTop = 0
       }
       scrollTo(activity, targetScrollTop).then(() => {
+        this.isShowPreventMask = false
         // random 范围为 1 ～ 6
         this.random = random
         this.targetId += random
@@ -215,6 +228,9 @@ export default {
     closeCountZeroAlert () {
       this.isShowActivityMask = false
       this.isShowCountZeroAlert = false
+    },
+    startBtnBeforeRequestCallback () {
+      this.isShowPreventMask = true
     }
   },
   created () {

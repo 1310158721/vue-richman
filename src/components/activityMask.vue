@@ -5,6 +5,7 @@
       class="activity-mask-wrapper"
       @touchstart.prevent=''
       @touchend.prevent=''
+      @touchmove.prevent=''
     />
   </transition>
 </template>

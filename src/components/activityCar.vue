@@ -11,8 +11,8 @@
       <div class='car-l-r'>
         <span class="people"></span>
         <span class="car"></span>
-        <span class="wheel wheel_1"></span>
-        <span class="wheel wheel_2"></span>
+        <span class="wheel wheel_1" :class="{'wheel_rotate_l_r_ani': $attrs.canCarRun}" />
+        <span class="wheel wheel_2" :class="{'wheel_rotate_l_r_ani': $attrs.canCarRun}" />
       </div>
     </template>
     <template v-else-if='carBack.includes(this.currentPosId)'>
@@ -25,8 +25,8 @@
       <div class='car-r-l'>
         <span class="people"></span>
         <span class="car"></span>
-        <span class="wheel wheel_1"></span>
-        <span class="wheel wheel_2"></span>
+        <span class="wheel wheel_1" :class="{'wheel_rotate_r_l_ani': $attrs.canCarRun, 'wheel_rotate_l_r_ani': isBackTwoStepNow}" />
+        <span class="wheel wheel_2" :class="{'wheel_rotate_r_l_ani': $attrs.canCarRun, 'wheel_rotate_l_r_ani': isBackTwoStepNow}" />
       </div>
     </template>
   </div>
@@ -53,7 +53,8 @@ export default {
       targetId: 0,
       carLtoR,
       carBack,
-      carRtoL
+      carRtoL,
+      isBackTwoStepNow: false
     }
   },
   computed: {},
@@ -88,6 +89,7 @@ export default {
       }
     },
     backTwoStep () {
+      this.isBackTwoStepNow = true
       if (this.currentPosId > this.targetId) {
         const car = this.$refs.car
         this.currentPosId--
@@ -119,6 +121,7 @@ export default {
         } else if (this.targetId < this.currentPosId) {
           this.backTwoStep()
         } else {
+          this.isBackTwoStepNow = false
           this.$emit('resetTargetIdCallback', this.currentPosId)
           this.carStop()
         }

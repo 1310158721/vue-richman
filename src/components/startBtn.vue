@@ -44,6 +44,7 @@ export default {
         this.$emit('drawCountZeroCallback')
         return
       }
+      this.$emit('startBtnBeforeRequestCallback')
       this.getRandom().then((res) => {
         if (res.data.code === 0) {
           // const { result } = res.data
